@@ -4,6 +4,7 @@ Features:
 Generates 6 unique numbers between 1 and 60
 No repeated numbers
 Results displayed in ascending order! Easier to visualize.
+New feat! Now it opens with a Menu which the user can choose from 1 to multiple games!
 
 
 ## Lembrando que é possível criar um atalho para a área de trabalho, indo na pasta raiz, crie um arquivo .bat e cole:
