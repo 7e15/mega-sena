@@ -1,37 +1,65 @@
-import java.util.Random;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 
 public class MegaSena {
 
     public static void main(String[] args) {
-        System.out.println("Ola! Seja bem vindo ao gerador de numeros da MegaSena!");
-        System.out.println("Os numeros de hoje sao:");
+        Scanner scanner = new Scanner(System.in);
+        int opcao;
 
-        GerarNumeros();
-        MensagemFinal();
-    }
+        System.out.println("Olá! Seja bem-vindo ao gerador da Mega-Sena!");
 
-    public static void GerarNumeros() {
-        Random generate = new Random();
-        ArrayList<Integer> numbers = new ArrayList<>();
+        do {
+            System.out.println("\n=== GERADOR MEGA-SENA ===");
+            System.out.println("1 - Gerar jogo");
+            System.out.println("2 - Gerar vários jogos");
+            System.out.println("0 - Sair");
+            System.out.print("Escolha: ");
 
-        while (numbers.size() < 6) {
-            int number = generate.nextInt(60) + 1;
+            opcao = scanner.nextInt();
 
-            if (!numbers.contains(number)) {
-                numbers.add(number);
+            switch (opcao) {
+                case 1:
+                    System.out.println("Os números de hoje são:");
+                    gerarJogo(6, 60);
+                    System.out.println("Boa sorte!");
+                    break;
+
+                case 2:
+                    System.out.print("Quantos jogos deseja gerar? ");
+                    int quantidade = scanner.nextInt();
+
+                    for (int i = 1; i <= quantidade; i++) {
+                        System.out.println("\nJogo " + i + ":");
+                        System.out.println("Os números são:");
+                        gerarJogo(6, 60);
+                    }
+                    System.out.println("Boa sorte!");
+                    break;
+
+                case 0:
+                    System.out.println("Saindo... Boa sorte!");
+                    break;
+
+                default:
+                    System.out.println("Opção inválida!");
             }
-        }
 
-        Collections.sort(numbers);
+        } while (opcao != 0);
 
-        for (int n : numbers) {
-            System.out.println(n);
-        }
+        scanner.close();
     }
 
-    public static void MensagemFinal() {
-        System.out.println("Boa sorte!");
+    public static void gerarJogo(int qtd, int limite) {
+        Random random = new Random();
+        Set<Integer> numeros = new HashSet<>();
+
+        while (numeros.size() < qtd) {
+            numeros.add(random.nextInt(limite) + 1);
+        }
+
+        List<Integer> lista = new ArrayList<>(numeros);
+        Collections.sort(lista);
+
+        System.out.println(lista);
     }
 }
